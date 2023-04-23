@@ -1,0 +1,24 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild application-*.tsx --bundle --outdir=dist --minify --define:process.env.NODE_ENV='\"production\"'",
+    "serve": "serve -l 3000 -l 3001 -l 3002"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.17.17",
+    "prettier": "^2.8.7",
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "mobx": "^6.9.0",
+    "mobx-react": "^7.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
