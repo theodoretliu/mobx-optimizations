@@ -5,7 +5,7 @@
 1. `yarn`
 2. `yarn build --watch`
 3. `yarn serve` (in a separate terminal window)
-4. Visit `localhost:3000/naive` and `localhost:3000/mobx-optimal` in two different browser windows
+4. Visit `localhost:3000/` to load the application and compare the two different implementations!
 
 ## Observations
 
