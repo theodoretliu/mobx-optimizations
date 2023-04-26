@@ -6,6 +6,7 @@
 2. `yarn build --watch`
 3. `yarn serve` (in a separate terminal window)
 4. Visit `localhost:3000/` to load the application and compare the two different implementations!
+5. You can open the Javascript console on any of the pages to see the performance. To see how they stack up side-by-side, you can open two separate windows in your browser.
 
 ## Observations
 
