@@ -34,12 +34,16 @@ export const MobxOptimal = observer(() => {
   useEffect(() => {
     cellsTouchedBox.value = 0;
 
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       runInAction(() => {
         board[randomInt()].set(randomInt(10));
       });
       cellsTouchedBox.value++;
     });
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   useTiming(cellsTouchedBox);
