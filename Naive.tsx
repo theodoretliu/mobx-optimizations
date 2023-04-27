@@ -1,5 +1,12 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import { SIZE, randomInt, useTiming } from "./constants";
+import React, {
+  useContext,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import { randomInt, useTiming } from "./constants";
+import { SizeContext } from "./App";
 
 let cellsTouchedBox = { value: 0 };
 
@@ -17,9 +24,9 @@ const Cell = ({ board, i }) => {
   );
 };
 
-export const Naive = () => {
+const NaiveImpl = ({ size }) => {
   const [board, setBoard] = useState(() => {
-    return Array(SIZE).fill(0);
+    return Array(size).fill(0);
   });
 
   useEffect(() => {
@@ -29,7 +36,7 @@ export const Naive = () => {
       cellsTouchedBox.value++;
       setBoard((board) => {
         const boardCopy = [...board];
-        boardCopy[randomInt()] = randomInt(10);
+        boardCopy[randomInt(size)] = randomInt(10);
         return boardCopy;
       });
     });
@@ -43,11 +50,17 @@ export const Naive = () => {
 
   return (
     <div style={{ lineHeight: "0px" }}>
-      {Array(SIZE)
+      {Array(size)
         .fill(0)
         .map((_row, i) => {
           return <Cell key={i} board={board} i={i} />;
         })}
     </div>
   );
+};
+
+export const Naive = () => {
+  const size = useContext(SizeContext);
+
+  return <NaiveImpl key={size} size={size} />;
 };

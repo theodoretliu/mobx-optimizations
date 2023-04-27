@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild application.tsx --bundle --outdir=dist --minify --define:process.env.NODE_ENV='\"production\"'",
+    "build": "esbuild application.tsx --sourcemap --bundle --outdir=dist --minify --define:process.env.NODE_ENV='\"production\"'",
     "serve": "serve -s"
   },
   "author": "",

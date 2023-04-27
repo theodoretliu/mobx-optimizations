@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { observable } from "mobx";
 import { observer, useLocalObservable } from "mobx-react";
-import { SIZE, randomInt, useTiming } from "./constants";
+import { randomInt, useTiming } from "./constants";
 import { runInAction } from "mobx";
+import { SizeContext } from "./App";
 
 let cellsTouchedBox = { value: 0 };
 
@@ -22,10 +23,10 @@ const Cell = observer(({ board, i }) => {
 
 type Y = ReturnType<typeof observable.box<number>>;
 
-export const MobxOptimal = observer(() => {
+const MobxOptimalImpl = observer(({ size }) => {
   const board = useLocalObservable(() => {
     const res: Y[] = [];
-    for (let i = 0; i < SIZE; i++) {
+    for (let i = 0; i < size; i++) {
       res.push(observable.box(0));
     }
     return res;
@@ -36,7 +37,7 @@ export const MobxOptimal = observer(() => {
 
     const intervalId = setInterval(() => {
       runInAction(() => {
-        board[randomInt()].set(randomInt(10));
+        board[randomInt(size)].set(randomInt(10));
       });
       cellsTouchedBox.value++;
     });
@@ -50,7 +51,7 @@ export const MobxOptimal = observer(() => {
 
   return (
     <div style={{ lineHeight: "0px" }}>
-      {Array(SIZE)
+      {Array(size)
         .fill(0)
         .map((_row, i) => {
           return <Cell board={board} i={i} />;
@@ -58,3 +59,9 @@ export const MobxOptimal = observer(() => {
     </div>
   );
 });
+
+export const MobxOptimal = () => {
+  const size = useContext(SizeContext);
+
+  return <MobxOptimalImpl key={size} size={size} />;
+};

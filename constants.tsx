@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export const SIZE = 10000;
 
-export const randomInt = (limit = SIZE) => {
+export const randomInt = (limit) => {
   return Math.floor(Math.random() * limit);
 };
 

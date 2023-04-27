@@ -45,7 +45,6 @@ export const App = observer(() => {
     };
   }, []);
 
-  console.log("mobx3");
   return (
     <div style={{ lineHeight: "0px" }}>
       {Array(SIZE)
